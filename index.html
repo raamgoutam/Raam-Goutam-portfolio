@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raam Goutam | Lyricist, Screenwriter & Novelist</title>
+    
+    <!-- SEO & Social Meta Tags -->
+    <meta name="description" content="Official portfolio of Raam Goutam, a professional Lyricist, Screenwriter, and Novelist with over two decades of experience in the Indian film and television industry.">
+    <meta property="og:title" content="Raam Goutam | Lyricist, Screenwriter & Novelist">
+    <meta property="og:description" content="Two decades of architectural storytelling in film, TV, and literature.">
+    <meta property="og:image" content="images/profile.jpg">
+    <meta property="og:url" content="https://raamgoutam.com">
+    <meta name="twitter:card" content="summary_large_image">
+
     <!-- Favicon link pointing to your images folder -->
     <link rel="icon" type="image/png" href="images/favicon.png">
     
@@ -67,6 +76,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            transition: color 0.3s ease;
         }
 
         .nav-link::after {
@@ -80,8 +90,12 @@
             transition: width 0.3s ease;
         }
 
-        .nav-link:hover::after {
+        .nav-link:hover::after, .nav-link.active::after {
             width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--accent-coral) !important;
         }
 
         .hero-bg {
@@ -94,12 +108,18 @@
             height: 0;
             overflow: hidden;
             border-radius: 4px;
-            background: #000;
+            background: #e5e7eb; /* Light grey placeholder */
         }
 
         .video-container iframe {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%; border: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .video-container iframe.loaded {
+            opacity: 1;
         }
 
         /* Song Index Grid */
@@ -188,7 +208,7 @@
 
         .project-tag {
             display: inline-block;
-            margin-left: 2rem;
+            margin-left: 2.5rem;
             font-size: 0.875rem;
             font-weight: 400;
             color: #111;
@@ -210,8 +230,36 @@
             transition: width 0.3s ease;
         }
 
-        .mobile-strip-item:hover::after {
+        .mobile-strip-item:hover::after, .mobile-strip-item.active::after {
             width: 100%;
+        }
+        
+        .mobile-strip-item.active {
+            color: var(--accent-coral);
+        }
+
+        /* Tooltip for Copy Email */
+        #copy-toast {
+            visibility: hidden;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 8px 12px;
+            position: fixed;
+            z-index: 10000;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        #copy-toast.show {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
 </head>
@@ -222,6 +270,9 @@
         <img src="images/favicon.png" alt="Raam Goutam" class="w-20 h-20 object-contain" onerror="this.style.display='none'">
     </div>
 
+    <!-- Email Copy Toast -->
+    <div id="copy-toast">Email copied to clipboard!</div>
+
     <!-- Navigation -->
     <nav class="sticky top-0 w-full z-50 bg-[#FDF9F3]/95 backdrop-blur-md border-b border-[#D1CEC7]">
         <div class="max-w-[1400px] mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
@@ -229,9 +280,9 @@
                 <img src="images/logo.png" alt="Raam Goutam Logo" class="h-full w-auto object-contain" onerror="this.src='https://via.placeholder.com/150x40?text=LOGO'">
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="#lyrics" class="nav-link text-zinc-600 hover:text-black">Songwriting</a>
-                <a href="#scripts" class="nav-link text-zinc-600 hover:text-black">Scripting</a>
-                <a href="#books" class="nav-link text-zinc-600 hover:text-black">Books</a>
+                <a href="#lyrics" class="nav-link nav-desktop text-zinc-600 hover:text-black">Songwriting</a>
+                <a href="#scripts" class="nav-link nav-desktop text-zinc-600 hover:text-black">Scripting</a>
+                <a href="#books" class="nav-link nav-desktop text-zinc-600 hover:text-black">Books</a>
             </div>
             <a href="#contact" class="px-5 py-2 bg-black text-white text-[10px] font-bold uppercase rounded-full tracking-widest">Contact</a>
         </div>
@@ -284,13 +335,13 @@
         </section>
     </div>
 
-    <!-- Quick Navigation Strip (Optimized for Mobile/Desktop) -->
+    <!-- Quick Navigation Strip -->
     <div class="bg-zinc-50 border-b border-zinc-200">
         <div class="max-w-[1400px] mx-auto px-6 py-4 flex justify-center md:justify-start items-center gap-8 md:gap-12">
             <span class="mono text-[9px] font-bold text-zinc-400 hidden sm:inline">Jump to section:</span>
-            <a href="#lyrics" class="mobile-strip-item text-[10px] md:text-xs font-extrabold uppercase tracking-[0.2em] transition-all">Songwriting</a>
-            <a href="#scripts" class="mobile-strip-item text-[10px] md:text-xs font-extrabold uppercase tracking-[0.2em] transition-all">Scripting</a>
-            <a href="#books" class="mobile-strip-item text-[10px] md:text-xs font-extrabold uppercase tracking-[0.2em] transition-all">Books</a>
+            <a href="#lyrics" class="mobile-strip-item nav-strip text-[10px] md:text-xs font-extrabold uppercase tracking-[0.2em] transition-all">Songwriting</a>
+            <a href="#scripts" class="mobile-strip-item nav-strip text-[10px] md:text-xs font-extrabold uppercase tracking-[0.2em] transition-all">Scripting</a>
+            <a href="#books" class="mobile-strip-item nav-strip text-[10px] md:text-xs font-extrabold uppercase tracking-[0.2em] transition-all">Books</a>
         </div>
     </div>
 
@@ -304,26 +355,26 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="space-y-3">
-                <div class="video-container shadow-md"><iframe src="https://www.youtube.com/embed/y-a7rks6DOk?si=AuhvLpj4XfMfw2XD"></iframe></div>
+                <div class="video-container shadow-md"><iframe data-src="https://www.youtube.com/embed/y-a7rks6DOk?si=AuhvLpj4XfMfw2XD"></iframe></div>
                 <p class="mono text-[9px] font-bold italic">Dum Laga — Dil Dosti Etc</p>
             </div>
             <div class="space-y-3">
-                <div class="video-container shadow-md"><iframe src="https://www.youtube.com/embed/lghteNz_I0g?si=GQKa4UhitE5XXwzV"></iframe></div>
+                <div class="video-container shadow-md"><iframe data-src="https://www.youtube.com/embed/lghteNz_I0g?si=GQKa4UhitE5XXwzV"></iframe></div>
                 <p class="mono text-[9px] font-bold italic">Tinka Tinka — Turning 30!!!</p>
             </div>
             <div class="space-y-3">
-                <div class="video-container shadow-md"><iframe src="https://www.youtube.com/embed/7e6UPeYxi7w?si=j5q5SkuToKwyHE1_"></iframe></div>
+                <div class="video-container shadow-md"><iframe data-src="https://www.youtube.com/embed/7e6UPeYxi7w?si=j5q5SkuToKwyHE1_"></iframe></div>
                 <p class="mono text-[9px] font-bold italic">More Banke Chhaliya — Dil Dosti Etc</p>
             </div>
             <div class="space-y-3">
-                <div class="video-container shadow-md"><iframe src="https://www.youtube.com/embed/UoWo0v6mhfs?si=xcZ3cLW9y3ZYBkk8"></iframe></div>
+                <div class="video-container shadow-md"><iframe data-src="https://www.youtube.com/embed/UoWo0v6mhfs?si=xcZ3cLW9y3ZYBkk8"></iframe></div>
                 <p class="mono text-[9px] font-bold italic">Piya Pyaro — Agam</p>
             </div>
         </div>
     </section>
 
     <!-- Section 02: Songwriting Index -->
-    <section id="lyrics" class="py-16 px-6 max-w-[1400px] mx-auto bg-white border-t border-zinc-200">
+    <section id="lyrics" class="py-16 px-6 max-w-[1400px] mx-auto bg-white border-t border-zinc-200 content-section">
         <div class="flex items-center gap-4 mb-8">
             <p class="mono text-orange-600">02</p>
             <h2 class="text-4xl md:text-6xl uppercase tracking-tighter">Songwriting Index</h2>
@@ -344,7 +395,7 @@
                 <div><h4 class="text-lg text-zinc-900">Tu Mera Hai <span class="project-tag">Beyond Life</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-beyond')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
             </div>
-            <div id="creds-beyond" class="credits-panel"><p><strong>Film:</strong> BEYOND LIFE | <strong>Directed by:</strong> Sabir Mustaffa | <strong>Singer:</strong> Javed Ali | <strong>Music:</strong> Gaurav H. Singh | <strong>Lyricist:</strong> Raam Goutam</p></div>
+            <div id="creds-beyond" class="credits-panel"><p><strong>Film:</strong> BEYOND LIFE | <strong>Directed by:</strong> Sabir Mustaffa | <strong>Singer:</strong> Javed Ali | <strong>Music:</strong> Gaurav H. सिंह | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
                 <span class="mono text-orange-500">Upcoming</span>
@@ -390,7 +441,7 @@
                 <div><h4 class="text-lg text-zinc-900">Aankhon se Peeiye <span class="project-tag">Miya, Biwi aur Murder</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-miya')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://www.youtube.com/embed/AX_lR9dN3Hk?si=Jv2pU61u32V4hxYb" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
             </div>
-            <div id="creds-miya" class="credits-panel"><p><strong>Web Series:</strong> MIYA, BIWI AUR MURDER (MX Player) | <strong>Director:</strong> सुनील मनचंदा | <strong>Singers:</strong> Ambili, Satish Chakravarthy | <strong>Music:</strong> Satish Chakravarthy | <strong>Lyricist:</strong> Raam Goutam</p></div>
+            <div id="creds-miya" class="credits-panel"><p><strong>Web Series:</strong> MIYA, BIWI AUR MURDER (MX Player) | <strong>Director:</strong> Sunil Manchanda | <strong>Singers:</strong> Ambili, Satish Chakravarthy | <strong>Music:</strong> Satish Chakravarthy | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
                 <span class="mono text-zinc-400">2016</span>
@@ -446,7 +497,7 @@
                 <div><h4 class="text-lg text-zinc-900">More Baanke Chhaliya... <span class="project-tag">Dil Dosti Etc</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-dd2')" class="btn-credits">Info/Credits</button><div class="listen-group"><a href="https://open.spotify.com/track/2fFd7mCuLx22xpUAjmDPhs?si=3e60930ce8054515" target="_blank" class="listen-link"><i class="fab fa-spotify"></i></a><a href="https://www.youtube.com/embed/7e6UPeYxi7w" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
             </div>
-            <div id="creds-dd2" class="credits-panel"><p><strong>Lyricist:</strong> Raam Goutam | <strong>Singer:</strong> Aarti Aanklikar | <strong>Music:</strong> Agnee</p></div>
+            <div id="creds-dd2" class="credits-panel"><p><strong>Lyricist:</strong> Raam Goutam | <strong>Singer:</strong> Aarti Aanklikार | <strong>Music:</strong> Agnee</p></div>
         </div>
 
         <!-- TV SERIALS SUBSECTION -->
@@ -566,7 +617,7 @@
     </section>
 
     <!-- Section 03: Script Writing Work -->
-    <section id="scripts" class="bg-[#2A2A2A] text-white py-24 px-6 md:px-20">
+    <section id="scripts" class="bg-[#2A2A2A] text-white py-24 px-6 md:px-20 content-section">
         <div class="max-w-[1400px] mx-auto">
             <div class="flex items-center gap-4 mb-14">
                 <p class="mono text-zinc-500">03</p>
@@ -653,7 +704,7 @@
     </section>
 
     <!-- Section 04: Bibliography -->
-    <section id="books" class="py-24 px-6 md:px-20 max-w-[1400px] mx-auto">
+    <section id="books" class="py-24 px-6 md:px-20 max-w-[1400px] mx-auto content-section">
         <div class="flex items-center gap-4 mb-12">
             <p class="mono text-orange-600">04</p>
             <h2 class="text-4xl md:text-5xl uppercase tracking-tighter">Bibliography</h2>
@@ -698,7 +749,12 @@
             <div>
                 <h2 class="text-7xl md:text-9xl tracking-tighter mb-10 leading-[0.8] font-black">Contact</h2>
                 <div class="space-y-4">
-                    <p class="text-2xl md:text-3xl font-extrabold tracking-tight">raamgoutam@gmail.com</p>
+                    <div class="flex items-center gap-3">
+                        <p id="email-address" class="text-2xl md:text-3xl font-extrabold tracking-tight">raamgoutam@gmail.com</p>
+                        <button onclick="copyEmail()" class="text-zinc-400 hover:text-orange-600 transition-colors" title="Copy Email">
+                            <i class="far fa-copy text-xl"></i>
+                        </button>
+                    </div>
                     <div class="flex flex-wrap gap-6 mono text-zinc-400 font-bold">
                         <a href="https://www.imdb.com/name/nm3673852/" target="_blank" class="hover:text-orange-600">IMDB</a>
                         <a href="https://www.youtube.com/@raamgoutam" target="_blank" class="hover:text-orange-600">YouTube</a>
@@ -725,10 +781,68 @@
                 splash.classList.add('fade-out');
                 setTimeout(() => {
                     splash.style.display = 'none';
-                }, 400); // Duration of the CSS transition
-            }, 500); // 0.5s visibility as requested
+                }, 400); 
+            }, 500); 
         });
 
+        // Copy Email Logic
+        function copyEmail() {
+            const email = document.getElementById('email-address').innerText;
+            const el = document.createElement('textarea');
+            el.value = email;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            const toast = document.getElementById('copy-toast');
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 2000);
+        }
+
+        // Section Highlighting & Active Nav logic
+        const sections = document.querySelectorAll('.content-section');
+        const navDesktop = document.querySelectorAll('.nav-desktop');
+        const navStrip = document.querySelectorAll('.nav-strip');
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    
+                    // Desktop Nav
+                    navDesktop.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                    });
+                    
+                    // Nav Strip
+                    navStrip.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // Video Lazy Loading Logic
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target;
+                    if (iframe.dataset.src) {
+                        iframe.src = iframe.dataset.src;
+                        iframe.removeAttribute('data-src');
+                        iframe.onload = () => iframe.classList.add('loaded');
+                    }
+                    videoObserver.unobserve(iframe);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('iframe[data-src]').forEach(iframe => videoObserver.observe(iframe));
+
+        // General Animations
         function toggleCredits(id) {
             const el = document.getElementById(id);
             if (!el) return;
@@ -739,7 +853,7 @@
             }
         }
 
-        const observer = new IntersectionObserver((entries) => {
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = "1";
@@ -752,7 +866,7 @@
             el.style.opacity = "0";
             el.style.transform = "translateY(15px)";
             el.style.transition = "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
-            observer.observe(el);
+            revealObserver.observe(el);
         });
     </script>
 </body>
