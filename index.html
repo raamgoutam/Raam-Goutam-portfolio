@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raam Goutam | Lyricist, Screenwriter & Novelist</title>
+    <!-- Favicon link pointing to your images folder -->
     <link rel="icon" type="image/png" href="images/favicon.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -97,7 +99,12 @@
                 gap: 0.5rem;
             }
             .song-actions { justify-content: flex-start !important; margin-top: 0.5rem; }
-            .project-tag { margin-left: 1rem !important; display: inline-block !important; }
+            /* Adjusted project tag for mobile to keep the horizontal gap while allowing wrapping */
+            .project-tag { 
+                margin-left: 1rem !important; 
+                display: inline-block; 
+                margin-top: 0;
+            }
         }
 
         .credits-panel {
@@ -114,6 +121,7 @@
             border-bottom: 1px solid var(--border-color);
         }
 
+        /* Listen Button States */
         .listen-group { display: flex; gap: 8px; }
         .listen-link {
             width: 32px; height: 32px;
@@ -162,10 +170,10 @@
 
         .project-tag {
             display: inline-block;
-            margin-left: 2.5rem;
-            font-size: 0.875rem;
-            font-weight: 400;
-            color: #111;
+            margin-left: 2rem;
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 400; /* font-normal */
+            color: #111; /* Normal bold opacity matching song title color */
         }
     </style>
 </head>
@@ -291,14 +299,14 @@
             <div class="song-row">
                 <span class="mono text-zinc-400">2022</span>
                 <div><h4 class="text-lg text-zinc-900">Piya Pyaro <span class="project-tag">Agam</span></h4></div>
-                <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-agam')" class="btn-credits">Info/Credits</button><div class="listen-group"><a href="#" class="listen-link disabled"><i class="fab fa-spotify"></i></a><a href="https://www.youtube.com/embed/UoWo0v6mhfs?si=xcZ3cLW9y3ZYBkk8" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
+                <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-agam')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://www.youtube.com/embed/UoWo0v6mhfs?si=xcZ3cLW9y3ZYBkk8" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
             </div>
             <div id="creds-agam" class="credits-panel"><p><strong>Film:</strong> AGAM | <strong>Director:</strong> Sumit Mishra | <strong>Singer:</strong> Sawani Mudgal | <strong>Music:</strong> Pravesh Mallick | <strong>Lyricist:</strong> Raam Goutam | <strong>Available on:</strong> Amazon Prime</p></div>
 
             <div class="song-row">
                 <span class="mono text-zinc-400">2022</span>
                 <div><h4 class="text-lg text-zinc-900">Aankhon se Peeiye <span class="project-tag">Miya, Biwi aur Murder</span></h4></div>
-                <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-miya')" class="btn-credits">Info/Credits</button><div class="listen-group"><a href="#" class="listen-link disabled"><i class="fab fa-spotify"></i></a><a href="https://www.youtube.com/embed/AX_lR9dN3Hk?si=Jv2pU61u32V4hxYb" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
+                <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-miya')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://www.youtube.com/embed/AX_lR9dN3Hk?si=Jv2pU61u32V4hxYb" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
             </div>
             <div id="creds-miya" class="credits-panel"><p><strong>Web Series:</strong> MIYA, BIWI AUR MURDER (MX Player) | <strong>Director:</strong> Sunil Manchanda | <strong>Singers:</strong> Ambili, Satish Chakravarthy | <strong>Music:</strong> Satish Chakravarthy | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
@@ -377,6 +385,48 @@
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-waris')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
             </div>
             <div id="creds-waris" class="credits-panel"><p><strong>Series Title:</strong> Ek WARIS...Bahut Zaruri Hai | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Shravan Rathod | <strong>Director:</strong> Somji R. Shastri | <strong>Singers:</strong> Darshan Rathod & Priya Bhattacharya</p></div>
+
+            <div class="song-row">
+                <span class="mono text-zinc-400">2015</span>
+                <div><h4 class="text-lg text-zinc-900">Apnepan ke liye... <span class="project-tag">Adhikar</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on DD National</p></div>
+                <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-adhikar')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
+            </div>
+            <div id="creds-adhikar" class="credits-panel"><p><strong>Series Title:</strong> Adhikar...Ek Kasam Ek Tapasya | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Chandrma Chandrahi | <strong>Director:</strong> Somji R. Shastri | <strong>Singer:</strong> Smita Adhikari</p></div>
+
+            <div class="song-row">
+                <span class="mono text-zinc-400">2011</span>
+                <div><h4 class="text-lg text-zinc-900">Kachche dhage... <span class="project-tag">Mangalsutra</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on DD National</p></div>
+                <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-ms')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
+            </div>
+            <div id="creds-ms" class="credits-panel"><p><strong>Series Title:</strong> Mangalsutra-ek maryada | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Chandrma Chandrahi | <strong>Director:</strong> Somji R. Shastri | <strong>Singer:</strong> Priya Bhattacharya</p></div>
+
+            <div class="song-row">
+                <span class="mono text-zinc-400">2008</span>
+                <div><h4 class="text-lg text-zinc-900">Aanchal ke <span class="project-tag">Baahubali</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on Mahua TV / Maurya TV</p></div>
+                <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-baahu')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
+            </div>
+            <div id="creds-baahu" class="credits-panel"><p><strong>Series Title:</strong> Baahubali | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Priyadarshan Pathak | <strong>Directed by:</strong> Anshuman K. Singh | <strong>Singer:</strong> Vinod Pathak</p></div>
+
+            <div class="song-row">
+                <span class="mono text-zinc-400">2005</span>
+                <div><h4 class="text-lg text-zinc-900">Jeevan ki muskaan... <span class="project-tag">Mamata</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on Bhopal Doordarshan</p></div>
+                <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-mamata')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
+            </div>
+            <div id="creds-mamata" class="credits-panel"><p><strong>Series Title:</strong> Mamata –Bandhan Rishton ka | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Chandrma Chandrahi | <strong>Director:</strong> Somji R. Shastri | <strong>Singer:</strong> Priya Bhattacharya</p></div>
+
+            <div class="song-row">
+                <span class="mono text-zinc-400">2002</span>
+                <div><h4 class="text-lg text-zinc-900">Chori chhupe... <span class="project-tag">Ye Kya Ho Raha Hai</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on DD National & Metro</p></div>
+                <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-ykhrh')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
+            </div>
+            <div id="creds-ykhrh" class="credits-panel"><p><strong>Series Title:</strong> Ye Kya Ho Raha hai | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Chandrma Chandrahi | <strong>Singer:</strong> Vinod Rathod</p></div>
+
+            <div class="song-row">
+                <span class="mono text-zinc-400">1997</span>
+                <div><h4 class="text-lg text-zinc-900">Ye hai Top Ten... <span class="project-tag">Top 10</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on Bhopal Doordarshan</p></div>
+                <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-top10')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
+            </div>
+            <div id="creds-top10" class="credits-panel"><p><strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Chandrma Chandrahi | <strong>Singer:</strong> Vinod Rathod</p></div>
         </div>
 
         <!-- INDEPENDENT SUBSECTION -->
@@ -600,7 +650,3 @@
     </script>
 </body>
 </html>
-
-
-
-
