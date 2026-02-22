@@ -28,6 +28,26 @@
             scroll-behavior: smooth;
         }
 
+        /* Splash Screen Styles */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        #splash-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
         .mono {
             font-family: 'Space Mono', monospace;
             text-transform: uppercase;
@@ -197,6 +217,11 @@
 </head>
 <body>
 
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <img src="images/favicon.png" alt="Raam Goutam" class="w-20 h-20 object-contain" onerror="this.style.display='none'">
+    </div>
+
     <!-- Navigation -->
     <nav class="sticky top-0 w-full z-50 bg-[#FDF9F3]/95 backdrop-blur-md border-b border-[#D1CEC7]">
         <div class="max-w-[1400px] mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
@@ -365,7 +390,7 @@
                 <div><h4 class="text-lg text-zinc-900">Aankhon se Peeiye <span class="project-tag">Miya, Biwi aur Murder</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-miya')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://www.youtube.com/embed/AX_lR9dN3Hk?si=Jv2pU61u32V4hxYb" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
             </div>
-            <div id="creds-miya" class="credits-panel"><p><strong>Web Series:</strong> MIYA, BIWI AUR MURDER (MX Player) | <strong>Director:</strong> Sunil Manchanda | <strong>Singers:</strong> Ambili, Satish Chakravarthy | <strong>Music:</strong> Satish Chakravarthy | <strong>Lyricist:</strong> Raam Goutam</p></div>
+            <div id="creds-miya" class="credits-panel"><p><strong>Web Series:</strong> MIYA, BIWI AUR MURDER (MX Player) | <strong>Director:</strong> सुनील मनचंदा | <strong>Singers:</strong> Ambili, Satish Chakravarthy | <strong>Music:</strong> Satish Chakravarthy | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
                 <span class="mono text-zinc-400">2016</span>
@@ -391,9 +416,9 @@
             <div class="song-row">
                 <span class="mono text-zinc-400">2013</span>
                 <div><h4 class="text-lg text-zinc-900">Mere Nation... <span class="project-tag">The World of Fashion</span></h4></div>
-                <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-issaq')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://www.youtube.com/embed/5VT27wCH_fw" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
+                <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-issaq-corr')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://www.youtube.com/embed/5VT27wCH_fw" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
             </div>
-            <div id="creds-issaq" class="credits-panel"><p><strong>Film:</strong> THE WORLD OF FASHION | <strong>Presentation:</strong> Vijayshree Productions | <strong>Director:</strong> Sanjay Khandelwal | <strong>Released:</strong> 19/04/2013 | <strong>Music:</strong> Vaishnav Deva | <strong>Singer:</strong> Sudesh Bhosle | <strong>Lyricist:</strong> Raam Goutam</p></div>
+            <div id="creds-issaq-corr" class="credits-panel"><p><strong>Film:</strong> THE WORLD OF FASHION | <strong>Presentation:</strong> Vijayshree Productions | <strong>Director:</strong> Sanjay Khandelwal | <strong>Released:</strong> 19/04/2013 | <strong>Music:</strong> Vaishnav Deva | <strong>Singer:</strong> Sudesh Bhosle | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
                 <span class="mono text-zinc-400">2011</span>
@@ -436,7 +461,7 @@
                 <p><strong>Series Title:</strong> Devanchal Ki Premkatha | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Chandrama Chandrahi | <strong>Producer:</strong> Cult Digital | <strong>Director:</strong> Somji R. Shastri</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2 text-[11px] font-medium text-zinc-600">
                     <div>1. Piya O Piya... (Astha Lohar, Manoj Mishra)</div>
-                    <div>2. Tumse Hum Judaai... (Jamuna Sharma, Manoranjan Jha)</div>
+                    <div>2. Tumसे Hum Judaai... (Jamuna Sharma, Manoranjan Jha)</div>
                     <div>3. Ye Mera Pyaar... (Larissa Almeida, Manoranjan Jha)</div>
                     <div>4. Ek Ladki Hai... (Mangal Dubey)</div>
                     <div>5. Hum Toh Jiyein Dekhkar... (Mangal Dubey)</div>
@@ -693,6 +718,17 @@
     </footer>
 
     <script>
+        // Splash Screen Logic
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash-screen');
+            setTimeout(() => {
+                splash.classList.add('fade-out');
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 400); // Duration of the CSS transition
+            }, 500); // 0.5s visibility as requested
+        });
+
         function toggleCredits(id) {
             const el = document.getElementById(id);
             if (!el) return;
