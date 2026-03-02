@@ -6,7 +6,7 @@
     <title>Raam Goutam | Lyricist, Screenwriter & Novelist</title>
     
     <!-- Google Search Console Verification - Replace the content value with your unique code -->
-    <meta name="google-site-verification" content="uTcIPdNUcl1JUwyjke5Iekf9ojvekogQPTky-4Nhg7E" />
+    <meta name="google-site-verification" content="PASTE_YOUR_VERIFICATION_CODE_HERE" />
 
     <!-- Schema.org Structured Data for Google Site Name -->
     <script type="application/ld+json">
@@ -46,11 +46,28 @@
             --border-color: #D1CEC7;
         }
 
+        ::selection {
+            background-color: var(--accent-coral);
+            color: white;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             scroll-behavior: smooth;
+        }
+
+        /* Scroll Progress Bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--accent-coral);
+            width: 0%;
+            z-index: 100;
+            transition: width 0.1s ease;
         }
 
         /* Splash Screen Styles */
@@ -289,13 +306,56 @@
             visibility: visible;
             opacity: 1;
         }
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--text-main);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 90;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-5px);
+            background: var(--accent-coral);
+        }
+
+        .quote-bg {
+            background: radial-gradient(circle at center, #ffffff 0%, #FDF9F3 100%);
+        }
     </style>
 </head>
 <body>
 
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
     <!-- Splash Screen -->
     <div id="splash-screen">
         <img src="images/favicon.png" alt="Raam Goutam" class="w-20 h-20 object-contain" onerror="this.style.display='none'">
+    </div>
+
+    <!-- Back to Top -->
+    <div id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-arrow-up"></i>
     </div>
 
     <!-- Email Copy Toast -->
@@ -398,6 +458,17 @@
                 <div class="video-container shadow-md"><iframe data-src="https://www.youtube.com/embed/UoWo0v6mhfs?si=xcZ3cLW9y3ZYBkk8"></iframe></div>
                 <p class="mono text-[9px] font-bold italic">Piya Pyaro — Agam</p>
             </div>
+        </div>
+    </section>
+
+    <!-- NEW FEATURE: Ink & Verses Section -->
+    <section class="py-24 quote-bg border-y border-zinc-200">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="mono text-zinc-400 mb-8 tracking-[0.3em]">Ink & Verses</p>
+            <h3 class="text-3xl md:text-5xl font-light italic text-zinc-800 leading-tight">
+                "Kachche dhaagon se bandhi hai...<br>zindagi ki yeh dastaan."
+            </h3>
+            <p class="mt-8 mono text-orange-600 font-bold">— From the Pen of Raam Goutam</p>
         </div>
     </section>
 
@@ -795,13 +866,32 @@
                     Mumbai — Jabalpur • Since 1997
                 </p>
                 <div class="text-zinc-400 text-[9px] font-bold uppercase tracking-[0.2em]">
-                    &copy; 2026 Raam Goutam — Professional Portfolio
+                    &copy; <span id="current-year"></span> Raam Goutam — Professional Portfolio
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
+        // Set dynamic copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+
+            // Show/Hide Back to Top
+            const btt = document.getElementById("back-to-top");
+            if (winScroll > 800) {
+                btt.classList.add("show");
+            } else {
+                btt.classList.remove("show");
+            }
+        });
+
         // Splash Screen Logic
         window.addEventListener('load', () => {
             const splash = document.getElementById('splash-screen');
@@ -819,7 +909,7 @@
                 setTimeout(() => {
                     splash.style.display = 'none';
                 }, 600); 
-            }, 1500); // 1.5 seconds visibility with elegant fade-in/out
+            }, 1500); 
         });
 
         // Copy Email Logic
