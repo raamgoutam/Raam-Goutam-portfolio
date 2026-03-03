@@ -46,6 +46,7 @@
             --border-color: #D1CEC7;
         }
 
+        /* Custom selection color */
         ::selection {
             background-color: var(--accent-coral);
             color: white;
@@ -56,6 +57,7 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         /* Scroll Progress Bar */
@@ -66,7 +68,7 @@
             height: 3px;
             background: var(--accent-coral);
             width: 0%;
-            z-index: 100;
+            z-index: 10001; /* Above splash */
             transition: width 0.1s ease;
         }
 
@@ -82,7 +84,9 @@
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
         }
 
         #splash-screen.fade-out {
@@ -99,7 +103,7 @@
         #splash-screen img {
             opacity: 0;
             animation: fadeInLogo 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: 0.2s;
+            animation-delay: 0.1s;
         }
 
         .mono {
@@ -153,7 +157,7 @@
             height: 0;
             overflow: hidden;
             border-radius: 4px;
-            background: #e5e7eb; /* Light grey placeholder */
+            background: #e5e7eb;
         }
 
         .video-container iframe {
@@ -207,7 +211,7 @@
                 gap: 1rem;
             }
             .poster-thumb, .poster-placeholder { width: 45px; }
-            .year-col { display: none; } /* Hide year on mobile to save space */
+            .year-col { display: none; }
             .song-actions { justify-content: flex-start !important; margin-top: 0.5rem; grid-column: span 2; }
         }
 
@@ -313,7 +317,7 @@
             border-radius: 4px;
             padding: 8px 12px;
             position: fixed;
-            z-index: 10000;
+            z-index: 10002;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
@@ -489,7 +493,8 @@
         <div class="sticky-subnav">Upcoming Movie Releases</div>
         <div class="border-x border-zinc-200 bg-white">
             <div class="song-row">
-                <img src="images/posters/udi.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/udi.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-orange-500 year-col">Upcoming</span>
                 <div><h4 class="text-lg text-zinc-900">Naqal mein Aqal <span class="project-tag" data-reveal="Udi">Undisclosed</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-udi')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
@@ -497,7 +502,8 @@
             <div id="creds-udi" class="credits-panel"><p><strong>Film:</strong> <span data-reveal="UDI">Undisclosed</span> | <strong>Directed by:</strong> <span data-reveal="Somji R. Shastri">Undisclosed</span> | <strong>Singer:</strong> <span data-reveal="Jyotica Tangri">Undisclosed</span> | <strong>Music:</strong> <span data-reveal="Shravan Rathod (of 'Nadeem–Shravan' Duo)">Undisclosed</span> | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/beyond-life.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/beyond-life.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-orange-500 year-col">Upcoming</span>
                 <div><h4 class="text-lg text-zinc-900">Tu Mera Hai <span class="project-tag" data-reveal="Beyond Life">Undisclosed</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-beyond')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
@@ -505,7 +511,8 @@
             <div id="creds-beyond" class="credits-panel"><p><strong>Film:</strong> <span data-reveal="BEYOND LIFE">Undisclosed</span> | <strong>Directed by:</strong> <span data-reveal="Sabir Mustaffa">Undisclosed</span> | <strong>Singer:</strong> <span data-reveal="Javed Ali">Undisclosed</span> | <strong>Music:</strong> <span data-reveal="Gaurav H. Singh">Undisclosed</span> | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/the-transistor.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/the-transistor.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-orange-500 year-col">Upcoming</span>
                 <div><h4 class="text-lg text-zinc-900">Mere Luck ki Gullak... <span class="project-tag" data-reveal="The Transistor">Undisclosed</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-trans')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
@@ -513,7 +520,8 @@
             <div id="creds-trans" class="credits-panel"><p><strong>Film:</strong> <span data-reveal="THE TRANSISTOR">Undisclosed</span> | <strong>Directed by:</strong> <span data-reveal="Somji R. Shastri">Undisclosed</span> | <strong>Singer:</strong> <span data-reveal="Garmina Diwakar">Undisclosed</span> | <strong>Music:</strong> <span data-reveal="Monty Sharma">Undisclosed</span> | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/sendhmaar.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/sendhmaar.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-orange-500 year-col">Upcoming</span>
                 <div><h4 class="text-lg text-zinc-900">Andheron ka lep... <span class="project-tag" data-reveal="Sendhmaar">Undisclosed</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-sendh')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
@@ -521,7 +529,8 @@
             <div id="creds-sendh" class="credits-panel"><p><strong>Film:</strong> <span data-reveal="SENDHMAAR">Undisclosed</span> | <strong>Directed by:</strong> <span data-reveal="Chetan Singh">Undisclosed</span> | <strong>Recitation:</strong> <span data-reveal="Chetan Singh">Undisclosed</span> | <strong>Music:</strong> <span data-reveal="Bappa B. Lahiri">Undisclosed</span> | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/chhatrasangram.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/chhatrasangram.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-orange-500 year-col">Upcoming</span>
                 <div><h4 class="text-lg text-zinc-900">Tum ho jiya ke chaina <span class="project-tag" data-reveal="Chhatrasangram">Undisclosed</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-chhatra')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
@@ -529,7 +538,8 @@
             <div id="creds-chhatra" class="credits-panel"><p><strong>Film:</strong> <span data-reveal="CHHATRASANGRAM">Undisclosed</span> | <strong>Directed by:</strong> <span data-reveal="Chetan Singh">Undisclosed</span> | <strong>Singers:</strong> <span data-reveal="Mohammed Irfan, Palak Muchhal">Undisclosed</span> | <strong>Music:</strong> <span data-reveal="Bappa B. Lahiri">Undisclosed</span> | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/bathtub.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/bathtub.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-orange-500 year-col">Upcoming</span>
                 <div><h4 class="text-lg text-zinc-900">Rehnuma <span class="project-tag" data-reveal="Karun Toh Karun Kya">Undisclosed</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-bath')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
@@ -541,7 +551,8 @@
         <div class="sticky-subnav">Movie Works</div>
         <div class="border-x border-zinc-200 bg-white">
             <div class="song-row">
-                <img src="images/posters/agam.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/agam.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-zinc-400 year-col">2022</span>
                 <div><h4 class="text-lg text-zinc-900">Piya Pyaro <span class="project-tag">Agam</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-agam')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://www.youtube.com/embed/UoWo0v6mhfs?si=xcZ3cLW9y3ZYBkk8" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -549,7 +560,8 @@
             <div id="creds-agam" class="credits-panel"><p><strong>Film:</strong> AGAM | <strong>Director:</strong> Sumit Mishra | <strong>Singer:</strong> Sawani Mudgal | <strong>Music:</strong> Pravesh Mallick | <strong>Lyricist:</strong> Raam Goutam | <strong>Available on:</strong> Amazon Prime</p></div>
 
             <div class="song-row">
-                <img src="images/posters/miya-biwi-aur-murder.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/miya-biwi-aur-murder.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-zinc-400 year-col">2022</span>
                 <div><h4 class="text-lg text-zinc-900">Aankhon se Peeiye <span class="project-tag">Miya, Biwi aur Murder</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-miya')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://www.youtube.com/embed/AX_lR9dN3Hk?si=Jv2pU61u32V4hxYb" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -557,7 +569,8 @@
             <div id="creds-miya" class="credits-panel"><p><strong>Web Series:</strong> MIYA, BIWI AUR MURDER (MX Player) | <strong>Director:</strong> Sunil Manchanda | <strong>Singers:</strong> Ambili, Satish Chakravarthy | <strong>Music:</strong> Satish Chakravarthy | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/chakallaspur.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/chakallaspur.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-zinc-400 year-col">2016</span>
                 <div><h4 class="text-lg text-zinc-900">Khath se Mann mein... <span class="project-tag">Chakallaspur</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-chak')" class="btn-credits">Info/Credits</button><div class="listen-group"><a href="https://open.spotify.com/track/4CKTFntXvygMc3z1fBqkl5?si=1eee167dbcd8417b" target="_blank" class="listen-link"><i class="fab fa-spotify"></i></a><a href="https://www.youtube.com/embed/p6JDeXh2vFo?si=h-utMSXozh-XYd-u" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -565,7 +578,8 @@
             <div id="creds-chak" class="credits-panel"><p><strong>Film:</strong> CHAKALLASPUR | <strong>Director:</strong> Rajneesh Jaiswal | <strong>Singer & Music:</strong> Pravesh Mallick | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/chhatrapati-shivaji.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/chhatrapati-shivaji.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-zinc-400 year-col">2013</span>
                 <div><h4 class="text-lg text-zinc-900">Pal Chhin Panchhi <span class="project-tag">Chhatrapati Shivaji</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-shivaji')" class="btn-credits">Info/Credits</button><div class="listen-group"><a href="https://www.jiosaavn.com/song/pal-chin/PBpSQCMAQWY" target="_blank" class="listen-link"><i class="fab fa-spotify"></i></a><a href="https://www.youtube.com/embed/5udAyKkgobk" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -573,7 +587,8 @@
             <div id="creds-shivaji" class="credits-panel"><p><strong>Film:</strong> CHHATRAPATI SHIVAJI | <strong>Director:</strong> Santosh Singh | <strong>Singer:</strong> Javed Ali | <strong>Music:</strong> Kartikeya Tiwari | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/issaq.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/issaq.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-zinc-400 year-col">2013</span>
                 <div><h4 class="text-lg text-zinc-900">Raam Baan.... <span class="project-tag">Issaq</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-rambaan')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://youtu.be/q6aJ-O624Ro?si=QEBvsF2CFbwGJU_w&t=7925" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -581,7 +596,8 @@
             <div id="creds-rambaan" class="credits-panel"><p><strong>Film:</strong> ISSAQ | <strong>Presentation:</strong> Paramhans Creations & Empty Pictures | <strong>Director:</strong> Manish Tiwary | <strong>Released:</strong> 26/07/2013 | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/the-world-of-fashion.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/the-world-of-fashion.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-zinc-400 year-col">2013</span>
                 <div><h4 class="text-lg text-zinc-900">Mere Nation... <span class="project-tag">The World of Fashion</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-nation-corr')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://www.youtube.com/embed/5VT27wCH_fw" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -589,7 +605,8 @@
             <div id="creds-nation-corr" class="credits-panel"><p><strong>Film:</strong> THE WORLD OF FASHION | <strong>Presentation:</strong> Vijayshree Productions | <strong>Director:</strong> Sanjay Khandelwal | <strong>Released:</strong> 19/04/2013 | <strong>Music:</strong> Vaishnav Deva | <strong>Singer:</strong> Sudesh Bhosle | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/turning-30.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/turning-30.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-zinc-400 year-col">2011</span>
                 <div><h4 class="text-lg text-zinc-900">Tinka Tinka... <span class="project-tag">Turning 30!!!</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-t30')" class="btn-credits">Info/Credits</button><div class="listen-group"><a href="https://open.spotify.com/track/0hCrlqUQJCNfSE3AgTfXoX" target="_blank" class="listen-link"><i class="fab fa-spotify"></i></a><a href="https://www.youtube.com/embed/lghteNz_I0g" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -597,7 +614,8 @@
             <div id="creds-t30" class="credits-panel"><p><strong>Film:</strong> TURNING 30!!! (Prakash Jha Productions) | <strong>Director:</strong> Alankrita Shrivastava | <strong>Singer:</strong> Hamza Farooqui | <strong>Music:</strong> Siddhartth Suhas | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/dil-dosti-etc.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/dil-dosti-etc.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-zinc-400 year-col">2007</span>
                 <div><h4 class="text-lg text-zinc-900">Dum Laga - Remix <span class="project-tag">Dil Dosti Etc</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-dd-remix')" class="btn-credits">Info/Credits</button><div class="listen-group"><a href="https://open.spotify.com/track/3hu87kpwUPfMzWHTfJOqgn" target="_blank" class="listen-link"><i class="fab fa-spotify"></i></a><a href="https://www.youtube.com/embed/y-a7rks6DOk" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -605,7 +623,8 @@
             <div id="creds-dd-remix" class="credits-panel"><p><strong>Film:</strong> DIL DOSTI ETC (Prakash Jha Productions) | <strong>Director:</strong> Manish Tiwary | <strong>Singers:</strong> Sooraj Jagan, Hamza Farooqi | <strong>Music:</strong> Siddhartth Suhas | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/dil-dosti-etc.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/dil-dosti-etc.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-zinc-400 year-col">2007</span>
                 <div><h4 class="text-lg text-zinc-900">Dum Laga... <span class="project-tag">Dil Dosti Etc</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-dd1')" class="btn-credits">Info/Credits</button><div class="listen-group"><a href="https://open.spotify.com/track/3hu87kpwUPfMzWHTfJOqgn" target="_blank" class="listen-link"><i class="fab fa-spotify"></i></a><a href="https://www.youtube.com/embed/y-a7rks6DOk" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -613,7 +632,8 @@
             <div id="creds-dd1" class="credits-panel"><p><strong>Film:</strong> DIL DOSTI ETC (Prakash Jha Productions) | <strong>Director:</strong> Manish Tiwary | <strong>Singers:</strong> Sooraj Jagan, Hamza Farooqi | <strong>Music:</strong> Siddhartth Suhas | <strong>Lyricist:</strong> Raam Goutam</p></div>
 
             <div class="song-row">
-                <img src="images/posters/dil-dosti-etc.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-film\'></i></div>'">
+                <img src="images/posters/dil-dosti-etc.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-film"></i></div>
                 <span class="mono text-zinc-400 year-col">2007</span>
                 <div><h4 class="text-lg text-zinc-900">More Baanke Chhaliya... <span class="project-tag">Dil Dosti Etc</span></h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-dd2')" class="btn-credits">Info/Credits</button><div class="listen-group"><a href="https://open.spotify.com/track/2fFd7mCuLx22xpUAjmDPhs?si=3e60930ce8054515" target="_blank" class="listen-link"><i class="fab fa-spotify"></i></a><a href="https://www.youtube.com/embed/7e6UPeYxi7w" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -625,7 +645,8 @@
         <div class="sticky-subnav">TV Serials / Shows</div>
         <div class="border-x border-zinc-200 bg-white">
             <div class="song-row">
-                <img src="images/posters/devanchal.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-tv\'></i></div>'">
+                <img src="images/posters/devanchal.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-tv"></i></div>
                 <span class="mono text-zinc-400 year-col">2025</span>
                 <div><h4 class="text-lg text-zinc-900">Devanchal Ki Premkatha (5 Songs)</h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on DD National</p></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-devanchal')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://youtu.be/S_8_eG8wP6E" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -634,15 +655,16 @@
                 <p><strong>Series Title:</strong> Devanchal Ki Premkatha | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Chandrama Chandrahi | <strong>Producer:</strong> Cult Digital | <strong>Director:</strong> Somji R. Shastri</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2 text-[11px] font-medium text-zinc-600">
                     <div>1. Piya O Piya... (Astha Lohar, Manoj Mishra)</div>
-                    <div>2. Tumसे Hum Judaai... (Jamuna Sharma, Manoranjan Jha)</div>
+                    <div>2. Tumse Hum Judaai... (Jamuna Sharma, Manoranjan Jha)</div>
                     <div>3. Ye Mera Pyaar... (Larissa Almeida, Manoranjan Jha)</div>
-                    <div>4. Ek Ladकी Hai... (Mangal दुबे)</div>
-                    <div>5. Hum Toh Jiyein Dekhkar... (Mangal दुबे)</div>
+                    <div>4. Ek Ladki Hai... (Mangal Dubey)</div>
+                    <div>5. Hum Toh Jiyein Dekhkar... (Mangal Dubey)</div>
                 </div>
             </div>
 
             <div class="song-row">
-                <img src="images/posters/indian-case-files.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-tv\'></i></div>'">
+                <img src="images/posters/indian-case-files.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-tv"></i></div>
                 <span class="mono text-zinc-400 year-col">2021</span>
                 <div><h4 class="text-lg text-zinc-900">Rahat-e-Rooh <span class="project-tag">Indian Case Files</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on Enterr10 Movies</p></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-icf')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><span class="listen-link disabled"><i class="fab fa-youtube"></i></span></div></div>
@@ -650,7 +672,8 @@
             <div id="creds-icf" class="credits-panel"><p><strong>Series Title:</strong> Indian Case Files | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Gaurav H. Singh | <strong>Producer:</strong> Somji R. Shastri | <strong>Director:</strong> Rafiq | <strong>Singer:</strong> Shivani Thakur</p></div>
 
             <div class="song-row">
-                <img src="images/posters/ek-waris.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-tv\'></i></div>'">
+                <img src="images/posters/ek-waris.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-tv"></i></div>
                 <span class="mono text-zinc-400 year-col">2020</span>
                 <div><h4 class="text-lg text-zinc-900">Title & Theme Song <span class="project-tag">Ek Waris...</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on Surya TV</p></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-waris')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://www.youtube.com/watch?v=xAian-18pXg" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -658,7 +681,8 @@
             <div id="creds-waris" class="credits-panel"><p><strong>Series Title:</strong> Ek WARIS...Bahut Zaruri Hai | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Shravan Rathod (of 'Nadeem–Shravan' Duo) | <strong>Director:</strong> Somji R. Shastri | <strong>Singers:</strong> Darshan Rathod & Priya Bhattacharya</p></div>
 
             <div class="song-row">
-                <img src="images/posters/adhikar.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-tv\'></i></div>'">
+                <img src="images/posters/adhikar.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-tv"></i></div>
                 <span class="mono text-zinc-400 year-col">2015</span>
                 <div><h4 class="text-lg text-zinc-900">Apnepan ke liye... <span class="project-tag">Adhikar</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on DD National</p></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-adhikar')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://youtu.be/7jm9XtdsK0s?si=P9kE3NNHghHt64Mo" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -666,7 +690,8 @@
             <div id="creds-adhikar" class="credits-panel"><p><strong>Series Title:</strong> Adhikar...Ek Kasam Ek Tapasya | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Chandrma Chandrahi | <strong>Director:</strong> Somji R. Shastri | <strong>Singer:</strong> Smita Adhikari</p></div>
 
             <div class="song-row">
-                <img src="images/posters/mangalsutra.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-tv\'></i></div>'">
+                <img src="images/posters/mangalsutra.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-tv"></i></div>
                 <span class="mono text-zinc-400 year-col">2011</span>
                 <div><h4 class="text-lg text-zinc-900">Kachche dhage... <span class="project-tag">Mangalsutra</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on DD National</p></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-ms')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://youtu.be/i7j-17KmeDM?si=5_0vJzyRcPUyHL_M" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -674,15 +699,17 @@
             <div id="creds-ms" class="credits-panel"><p><strong>Series Title:</strong> Mangalsutra-ek maryada | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Chandrma Chandrahi | <strong>Director:</strong> Somji R. Shastri | <strong>Singer:</strong> Priya Bhattacharya</p></div>
 
             <div class="song-row">
-                <img src="images/posters/baahubali.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-tv\'></i></div>'">
+                <img src="images/posters/baahubali.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-tv"></i></div>
                 <span class="mono text-zinc-400 year-col">2008</span>
                 <div><h4 class="text-lg text-zinc-900">Aanchal ke <span class="project-tag">Baahubali</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on Mahua TV / Maurya TV</p></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-baahu')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://youtu.be/0mEN91wlpC4?si=_R2-uoyLGGs2XNeP" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
             </div>
-            <div id="creds-baahu" class="credits-panel"><p><strong>Series Title:</strong> Baahubali | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Priyadarshan Pathak | <strong>Directed by:</strong> Anshuman K. सिंह | <strong>Singer:</strong> Vinod Pathak</p></div>
+            <div id="creds-baahu" class="credits-panel"><p><strong>Series Title:</strong> Baahubali | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Priyadarshan Pathak | <strong>Directed by:</strong> Anshuman K. Singh | <strong>Singer:</strong> Vinod Pathak</p></div>
 
             <div class="song-row">
-                <img src="images/posters/mamata.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-tv\'></i></div>'">
+                <img src="images/posters/mamata.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-tv"></i></div>
                 <span class="mono text-zinc-400 year-col">2005</span>
                 <div><h4 class="text-lg text-zinc-900">Jeevan ki muskaan... <span class="project-tag">Mamata</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on Bhopal Doordarshan</p></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-mamata')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://youtu.be/TDdSAPbjyfg?si=KLeY5r60AiAAEc3g&t=455" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -690,7 +717,8 @@
             <div id="creds-mamata" class="credits-panel"><p><strong>Series Title:</strong> Mamata –Bandhan Rishton ka | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Chandrma Chandrahi | <strong>Director:</strong> Somji R. Shastri | <strong>Singer:</strong> Priya Bhattacharya</p></div>
 
             <div class="song-row">
-                <img src="images/posters/ye-kya-ho-raha-hai.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-tv\'></i></div>'">
+                <img src="images/posters/ye-kya-ho-raha-hai.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-tv"></i></div>
                 <span class="mono text-zinc-400 year-col">2002</span>
                 <div><h4 class="text-lg text-zinc-900">Chori chhupe... <span class="project-tag">Ye Kya Ho Raha Hai</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on DD National & Metro</p></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-ykhrh')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://youtu.be/TDdSAPbjyfg?si=Z0qZhZIl9r2_blvN&t=421" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -698,7 +726,8 @@
             <div id="creds-ykhrh" class="credits-panel"><p><strong>Series Title:</strong> Ye Kya Ho Raha hai | <strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Chandrma Chandrahi | <strong>Singer:</strong> Vinod Rathod</p></div>
 
             <div class="song-row">
-                <img src="images/posters/top-10.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-tv\'></i></div>'">
+                <img src="images/posters/top-10.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-tv"></i></div>
                 <span class="mono text-zinc-400 year-col">1997</span>
                 <div><h4 class="text-lg text-zinc-900">Ye hai Top Ten... <span class="project-tag">Top 10</span></h4><p class="text-[10px] text-zinc-400 font-bold">Broadcast on Bhopal Doordarshan</p></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-top10')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://youtu.be/TDdSAPbjyfg?si=2_h9pkIYwlToVlzr&t=409" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -710,7 +739,8 @@
         <div class="sticky-subnav">Independent & Devotional Albums</div>
         <div class="border-x border-zinc-200 bg-white">
             <div class="song-row">
-                <img src="images/posters/chhappan-bhog.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-om\'></i></div>'">
+                <img src="images/posters/chhappan-bhog.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-om"></i></div>
                 <span class="mono text-zinc-400 year-col">2026</span>
                 <div><h4 class="text-lg text-zinc-900">Chhappan Bhog</h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-cb')" class="btn-credits">Info/Credits</button><div class="listen-group"><a href="https://open.spotify.com/track/4MgeaOT3gZc1LDz3HS9nNN?si=62966f05bef9420c" target="_blank" class="listen-link"><i class="fab fa-spotify"></i></a><a href="https://youtu.be/Ol_Zs1_aB4o?si=gDE3GEAQgBlCzsxg" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -718,7 +748,8 @@
             <div id="creds-cb" class="credits-panel"><p><strong>Lyricist:</strong> Raam Goutam | <strong>Music & Singer:</strong> Abhinay Jain | <strong>Released:</strong> Jan 17, 2026</p></div>
 
             <div class="song-row">
-                <img src="images/posters/ek-chitthi.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-music\'></i></div>'">
+                <img src="images/posters/ek-chitthi.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-music"></i></div>
                 <span class="mono text-zinc-400 year-col">2022</span>
                 <div><h4 class="text-lg text-zinc-900">Ek Chitthi...</h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-chitthi')" class="btn-credits">Info/Credits</button><div class="listen-group"><a href="https://open.spotify.com/track/0R8iDVXdJC8q8f0sQirX30?si=54b7de680d314714" target="_blank" class="listen-link"><i class="fab fa-spotify"></i></a><a href="https://youtu.be/hd9dXtCMYsA?si=W-Q2VbY7EGeYoJzP" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -726,7 +757,8 @@
             <div id="creds-chitthi" class="credits-panel"><p><strong>Lyricist:</strong> Raam Goutam | <strong>Music & Singer:</strong> Abhinay Jain & Chorus | <strong>Released:</strong> Aug 24, 2022</p></div>
 
             <div class="song-row">
-                <img src="images/posters/nit-karo-guru-gaan.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-om\'></i></div>'">
+                <img src="images/posters/nit-karo-guru-gaan.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-om"></i></div>
                 <span class="mono text-zinc-400 year-col">2021</span>
                 <div><h4 class="text-lg text-zinc-900">Nit Karo Guru Gaan Re</h4></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-nkgg')" class="btn-credits">Info/Credits</button><div class="listen-group"><a href="https://open.spotify.com/track/12LwAzbbmTUR2tN2S7JdjP?si=e563171b6b5842e3" target="_blank" class="listen-link"><i class="fab fa-spotify"></i></a><a href="https://youtu.be/WimdUvOL5Tw?si=S-2vOqJ9cvz2M3RU" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -734,7 +766,8 @@
             <div id="creds-nkgg" class="credits-panel"><p><strong>Lyricist:</strong> Raam Goutam | <strong>Music:</strong> Abhinay Jain | <strong>Singers:</strong> Abhinay Jain, Anupriya Chatterjee | <strong>Released:</strong> Jul 15, 2021</p></div>
 
             <div class="song-row">
-                <img src="images/posters/prabhu-karuna-karo.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-om\'></i></div>'">
+                <img src="images/posters/prabhu-karuna-karo.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-om"></i></div>
                 <span class="mono text-zinc-400 year-col">2021</span>
                 <div><h4 class="text-lg text-zinc-900">Prabhu Karuna Karo</h4><p class="text-[10px] text-zinc-400 font-semibold italic">Promotional song for Novel ‘Ek Bihari Shav Prabhari’</p></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-prabhu')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://youtu.be/mc0y9MEIzBg?si=Pl8FlGY8WLMeRGdS" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -742,7 +775,8 @@
             <div id="creds-prabhu" class="credits-panel"><p><strong>Lyricist:</strong> Raam Goutam | Released as a promotional track for his novel 'Ek Bihari Shav Prabhari'. | <strong>Released:</strong> Apr 12, 2021</p></div>
 
             <div class="song-row">
-                <img src="images/posters/damini.jpg" class="poster-thumb" onerror="this.outerHTML='<div class=\'poster-placeholder\'><i class=\'fas fa-music\'></i></div>'">
+                <img src="images/posters/damini.jpg" class="poster-thumb" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="poster-placeholder" style="display:none"><i class="fas fa-music"></i></div>
                 <span class="mono text-zinc-400 year-col">Special</span>
                 <div><h4 class="text-lg text-zinc-900">Damini ki Yaadein...</h4><p class="text-[10px] text-zinc-400 font-semibold italic">Tribute to Damini and Women of India</p></div>
                 <div class="flex justify-end gap-3 song-actions"><button onclick="toggleCredits('creds-damini')" class="btn-credits">Info/Credits</button><div class="listen-group"><span class="listen-link disabled"><i class="fab fa-spotify"></i></span><a href="https://youtu.be/j5JFs9YjoWg?si=-_hUAYpRL7DChWqp" target="_blank" class="listen-link"><i class="fab fa-youtube"></i></a></div></div>
@@ -928,10 +962,21 @@
             }
         });
 
-        // Splash Screen Logic
-        window.addEventListener('load', () => {
+        // Splash Screen Logic - Improved to prevent getting "stuck"
+        function hideSplash() {
             const splash = document.getElementById('splash-screen');
-            
+            if (splash && !splash.classList.contains('fade-out')) {
+                splash.classList.add('fade-out');
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 800);
+            }
+        }
+
+        // Force hide splash after 2.5 seconds regardless of load status
+        const splashTimeout = setTimeout(hideSplash, 2500);
+
+        window.addEventListener('load', () => {
             // Pro-Link Reveal Logic: Check if ?view=pro is in the URL
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('view') === 'pro') {
@@ -939,13 +984,10 @@
                     el.innerText = el.getAttribute('data-reveal');
                 });
             }
-
-            setTimeout(() => {
-                splash.classList.add('fade-out');
-                setTimeout(() => {
-                    splash.style.display = 'none';
-                }, 600); 
-            }, 1500); 
+            
+            // Clear the force timeout and hide splash after a small delay
+            clearTimeout(splashTimeout);
+            setTimeout(hideSplash, 1200); 
         });
 
         // Copy Email Logic
@@ -972,13 +1014,9 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute('id');
-                    
-                    // Desktop Nav
                     navDesktop.forEach(link => {
                         link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
                     });
-                    
-                    // Nav Strip
                     navStrip.forEach(link => {
                         link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
                     });
