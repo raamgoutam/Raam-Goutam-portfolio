@@ -962,7 +962,7 @@
             }
         });
 
-        // Splash Screen Logic - Improved to prevent getting "stuck"
+        // Splash Screen Logic - Robust fail-safe
         function hideSplash() {
             const splash = document.getElementById('splash-screen');
             if (splash && !splash.classList.contains('fade-out')) {
@@ -977,7 +977,7 @@
         const splashTimeout = setTimeout(hideSplash, 2500);
 
         window.addEventListener('load', () => {
-            // Pro-Link Reveal Logic: Check if ?view=pro is in the URL
+            // Pro-Link Reveal Logic
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('view') === 'pro') {
                 document.querySelectorAll('[data-reveal]').forEach(el => {
@@ -985,7 +985,6 @@
                 });
             }
             
-            // Clear the force timeout and hide splash after a small delay
             clearTimeout(splashTimeout);
             setTimeout(hideSplash, 1200); 
         });
