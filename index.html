@@ -85,7 +85,7 @@
             z-index: 9999;
             opacity: 1;
             visibility: visible;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity(0.8s) ease, visibility(0.8s) ease;
         }
 
         #splash-screen.fade-out {
@@ -145,29 +145,60 @@
             color: var(--accent-coral) !important;
         }
 
-        /* Hero Section Styling with Floating Akshars */
+        /* Hero Section Styling with Drifting Ink Effect */
         .hero-bg {
-            background: linear-gradient(135deg, #FDF9F3 0%, #F2CC8F22 50%, #E07A5F11 100%);
+            background-color: var(--bg-color);
             position: relative;
             overflow: hidden;
         }
 
-        .floating-akshar {
+        .ink-wrapper {
             position: absolute;
-            font-size: clamp(6rem, 20vw, 15rem);
-            font-weight: 800;
-            color: var(--accent-coral);
-            opacity: 0.04;
-            pointer-events: none;
-            user-select: none;
+            inset: 0;
             z-index: 0;
-            animation: float-drift 25s infinite alternate ease-in-out;
+            filter: blur(80px);
+            opacity: 0.6;
+            pointer-events: none;
         }
 
-        @keyframes float-drift {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(40px, -30px) rotate(8deg); }
-            100% { transform: translate(-30px, 40px) rotate(-8deg); }
+        .ink-blob {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: multiply;
+            animation: ink-drift 25s infinite alternate ease-in-out;
+        }
+
+        .ink-1 {
+            width: 50vw; height: 50vw;
+            background: var(--accent-coral);
+            top: -10%; left: -10%;
+            opacity: 0.08;
+            animation-duration: 30s;
+        }
+
+        .ink-2 {
+            width: 40vw; height: 40vw;
+            background: var(--accent-yellow);
+            bottom: -5%; right: -5%;
+            opacity: 0.1;
+            animation-duration: 22s;
+            animation-delay: -5s;
+        }
+
+        .ink-3 {
+            width: 35vw; height: 35vw;
+            background: var(--accent-sage);
+            top: 20%; right: 15%;
+            opacity: 0.07;
+            animation-duration: 28s;
+            animation-delay: -12s;
+        }
+
+        @keyframes ink-drift {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(10%, 15%) scale(1.1); }
+            66% { transform: translate(-5%, 10%) scale(0.9); }
+            100% { transform: translate(15%, -5%) scale(1.05); }
         }
 
         .video-container {
@@ -396,13 +427,11 @@
     </nav>
 
     <header class="hero-bg py-20 px-6 md:px-20 border-b border-zinc-300">
-        <!-- Background Floating Akshars -->
-        <div class="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
-            <span class="floating-akshar" style="top: 10%; left: 5%; animation-delay: 0s;">अ</span>
-            <span class="floating-akshar" style="top: 50%; right: 5%; animation-delay: -5s;">म</span>
-            <span class="floating-akshar" style="bottom: 5%; left: 15%; animation-delay: -10s;">क</span>
-            <span class="floating-akshar" style="top: 20%; right: 20%; animation-delay: -15s; font-family: sans-serif; font-style: italic; opacity: 0.03;">R</span>
-            <span class="floating-akshar" style="bottom: 30%; right: 10%; animation-delay: -20s; font-family: sans-serif; font-style: italic; opacity: 0.03;">G</span>
+        <!-- Drifting Ink Blobs -->
+        <div class="ink-wrapper">
+            <div class="ink-blob ink-1"></div>
+            <div class="ink-blob ink-2"></div>
+            <div class="ink-blob ink-3"></div>
         </div>
 
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-end gap-12 relative z-10">
