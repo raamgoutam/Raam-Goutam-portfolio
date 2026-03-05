@@ -145,8 +145,29 @@
             color: var(--accent-coral) !important;
         }
 
+        /* Hero Section Styling with Floating Akshars */
         .hero-bg {
             background: linear-gradient(135deg, #FDF9F3 0%, #F2CC8F22 50%, #E07A5F11 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-akshar {
+            position: absolute;
+            font-size: clamp(6rem, 20vw, 15rem);
+            font-weight: 800;
+            color: var(--accent-coral);
+            opacity: 0.04;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+            animation: float-drift 25s infinite alternate ease-in-out;
+        }
+
+        @keyframes float-drift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(40px, -30px) rotate(8deg); }
+            100% { transform: translate(-30px, 40px) rotate(-8deg); }
         }
 
         .video-container {
@@ -277,6 +298,8 @@
             overflow: hidden;
             border: 1px solid var(--border-color);
             background: #eee;
+            position: relative;
+            z-index: 10;
         }
 
         .sticky-subnav {
@@ -373,7 +396,16 @@
     </nav>
 
     <header class="hero-bg py-20 px-6 md:px-20 border-b border-zinc-300">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-end gap-12">
+        <!-- Background Floating Akshars -->
+        <div class="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
+            <span class="floating-akshar" style="top: 10%; left: 5%; animation-delay: 0s;">अ</span>
+            <span class="floating-akshar" style="top: 50%; right: 5%; animation-delay: -5s;">म</span>
+            <span class="floating-akshar" style="bottom: 5%; left: 15%; animation-delay: -10s;">क</span>
+            <span class="floating-akshar" style="top: 20%; right: 20%; animation-delay: -15s; font-family: sans-serif; font-style: italic; opacity: 0.03;">R</span>
+            <span class="floating-akshar" style="bottom: 30%; right: 10%; animation-delay: -20s; font-family: sans-serif; font-style: italic; opacity: 0.03;">G</span>
+        </div>
+
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-end gap-12 relative z-10">
             <div class="flex flex-col md:flex-row gap-10 items-center md:items-end">
                 <div class="profile-img-container shadow-xl">
                     <img src="images/profile.jpg" alt="Raam Goutam" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/300?text=Profile+Pic'">
