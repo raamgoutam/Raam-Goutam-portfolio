@@ -155,22 +155,24 @@
             inset: 0;
             z-index: 0;
             pointer-events: none;
-            filter: blur(50px); 
+            filter: blur(60px); 
             opacity: 1;
         }
 
         #random-blob {
             position: absolute;
             border-radius: 50%;
-            width: 85vw; 
-            height: 85vw;
+            /* Changed to vmax to maintain consistent size on mobile and desktop */
+            width: 100vmax; 
+            height: 100vmax;
             background: var(--accent-yellow);
-            /* Centered initial position */
             top: 50%;
             left: 50%;
+            /* Centering offset */
+            margin-top: -50vmax;
+            margin-left: -50vmax;
             opacity: 0.6;
-            /* Faster transition for more constant motion */
-            transition: transform 3.5s cubic-bezier(0.45, 0, 0.55, 1);
+            transition: transform 4s cubic-bezier(0.45, 0, 0.55, 1);
             will-change: transform;
         }
 
@@ -488,27 +490,25 @@
         function moveBlobRandomly() {
             if (!blob) return;
             
-            // Increased range for X and Y to sweep across entire Hero
-            // x from -90 to 10
-            const x = Math.floor(Math.random() * 100) - 90; 
-            // y from -80 to 20
-            const y = Math.floor(Math.random() * 100) - 80; 
+            // Range relative to viewport width and height
+            const x = Math.floor(Math.random() * 60) - 30; // -30vw to 30vw
+            const y = Math.floor(Math.random() * 40) - 20; // -20vh to 20vh
             
-            // Random Scale (Breathing) between 0.6 and 1.7
-            const scale = (Math.random() * (1.7 - 0.6) + 0.6).toFixed(2);
+            // Random Scale (Breathing) between 0.8 and 1.5
+            const scale = (Math.random() * (1.5 - 0.8) + 0.8).toFixed(2);
             
             // Full rotation range
             const rotate = Math.floor(Math.random() * 360);
             
-            // Central alignment adjustment + random translate
+            // Apply transform relative to current position
             blob.style.transform = `translate(${x}vw, ${y}vh) rotate(${rotate}deg) scale(${scale})`;
         }
 
-        // Fast interval to keep the motion active
+        // Keep motion active
         moveBlobRandomly();
-        setInterval(moveBlobRandomly, 3000); 
+        setInterval(moveBlobRandomly, 4000); 
 
-        // Current Year Logic
+        // Fix Year logic and general interactions
         const yearEl = document.getElementById('current-year');
         if(yearEl) yearEl.textContent = new Date().getFullYear();
 
