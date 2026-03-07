@@ -1143,17 +1143,17 @@
 function startTypewriter() {
     const el = document.getElementById('hero-tagline-text');
     if (!el) return;
-    const text = 'Two decades of architectural storytelling.';
+    const words = 'Two decades of architectural storytelling.'.split(' ');
     let i = 0;
     el.textContent = '';
-    function type() {
-        if (i < text.length) {
-            el.textContent += text.charAt(i);
+    function typeWord() {
+        if (i < words.length) {
+            el.textContent += (i === 0 ? '' : ' ') + words[i];
             i++;
-            setTimeout(type, 52);
+            setTimeout(typeWord, 220);
         }
     }
-    type();
+    typeWord();
 }
 setTimeout(startTypewriter, 3000);
 
@@ -1273,6 +1273,7 @@ setTimeout(startTypewriter, 3000);
     </script>
 </body>
 </html>
+
 
 
 
