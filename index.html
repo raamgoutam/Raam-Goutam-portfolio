@@ -1122,6 +1122,24 @@
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
+function startTypewriter() {
+    const el = document.getElementById('hero-tagline');
+    if (!el) return;
+    const text = 'Two decades of architectural storytelling.';
+    let i = 0;
+    el.textContent = '';
+    function type() {
+        if (i < text.length) {
+            el.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, 52);
+        }
+    }
+    type();
+}
+setTimeout(startTypewriter, 3000);
+
+        
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1238,6 +1256,7 @@
     </script>
 </body>
 </html>
+
 
 
 
