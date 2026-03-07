@@ -426,7 +426,10 @@
                     <p class="mono text-zinc-500 mb-4">Portfolio — 2026</p>
                     <h1 class="text-[clamp(3rem,12vw,8rem)] text-zinc-900 mb-4">Raam<br>Goutam</h1>
                     <p class="text-xl md:text-2xl font-medium text-zinc-700 max-w-lg">Lyricist, Screenwriter, and Novelist.</p>
-                    <p id="hero-tagline" class="mono text-sm text-zinc-500 mt-3 max-w-lg" style="min-height: 1.2em;"></p>
+                    <p id="hero-tagline" class="mono text-sm text-zinc-500 mt-3 max-w-lg" style="position: relative;">
+    <span aria-hidden="true" style="visibility: hidden; display: block;">Two decades of architectural storytelling.</span>
+    <span id="hero-tagline-text" style="position: absolute; top: 0; left: 0;"></span>
+</p>
                 </div>
             </div>
         </div>
@@ -1138,7 +1141,7 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
 function startTypewriter() {
-    const el = document.getElementById('hero-tagline');
+    const el = document.getElementById('hero-tagline-text');
     if (!el) return;
     const text = 'Two decades of architectural storytelling.';
     let i = 0;
@@ -1154,7 +1157,6 @@ function startTypewriter() {
 }
 setTimeout(startTypewriter, 3000);
 
-        
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1271,6 +1273,7 @@ setTimeout(startTypewriter, 3000);
     </script>
 </body>
 </html>
+
 
 
 
