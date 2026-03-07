@@ -165,6 +165,7 @@
     background: #FDF9F3;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
 }
 
 .hero-blob {
@@ -174,6 +175,7 @@
     opacity: 0.5;
     pointer-events: none;
     z-index: 0;
+    will-change: transform;
 }
 
 .hero-blob-1 {
@@ -1321,6 +1323,7 @@ setTimeout(startTypewriter, 3000);
     </script>
 </body>
 </html>
+
 
 
 
