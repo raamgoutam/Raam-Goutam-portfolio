@@ -1145,24 +1145,24 @@ function startTypewriter() {
     if (!el) return;
 
     const isMobile = window.innerWidth <= 768;
-    const words = ['Two', 'decades', 'of', 'architectural', 'storytelling.'];
+    const text = isMobile
+        ? 'Two decades of architectural\nstorytelling.'
+        : 'Two decades of architectural storytelling.';
+
     let i = 0;
-    let built = '';
+    el.innerHTML = '';
 
-    function typeWord() {
-        if (i >= words.length) return;
-
-        if (isMobile && words[i] === 'storytelling.') {
-            built += '<br>';
+    function type() {
+        if (i >= text.length) return;
+        if (text[i] === '\n') {
+            el.innerHTML += '<br>';
+        } else {
+            el.innerHTML += text[i];
         }
-
-        const sep = (built && !built.endsWith('<br>')) ? ' ' : '';
-        built += sep + words[i];
-        el.innerHTML = built;
         i++;
-        setTimeout(typeWord, 220);
+        setTimeout(type, 55);
     }
-    typeWord();
+    type();
 }
 setTimeout(startTypewriter, 3000);
 
@@ -1282,6 +1282,7 @@ setTimeout(startTypewriter, 3000);
     </script>
 </body>
 </html>
+
 
 
 
