@@ -145,9 +145,17 @@
             color: var(--accent-coral) !important;
         }
 
-        .hero-bg {
-            background: linear-gradient(135deg, #FDF9F3 0%, #F2CC8F22 50%, #E07A5F11 100%);
-        }
+        @keyframes heroBreathe {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero-bg {
+    background: linear-gradient(135deg, #FDF9F3 0%, #F2CC8F33 30%, #E07A5F1A 65%, #FDF9F3 100%);
+    background-size: 250% 250%;
+    animation: heroBreathe 8s ease-in-out infinite;
+}
 
         .video-container {
             position: relative;
@@ -1231,6 +1239,7 @@
     </script>
 </body>
 </html>
+
 
 
 
